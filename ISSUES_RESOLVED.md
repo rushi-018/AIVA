@@ -100,8 +100,20 @@ python demo_multi_website.py
 1. ✅ **Cart removal now works properly** with double-click confirmation
 2. ✅ **Login rate limiting is handled gracefully** with user guidance
 3. ✅ **Multi-website support added** - now works with Flipkart AND Amazon
+4. ✅ **Chrome WebDriver set as default** for better reliability and compatibility
+
+## 🚀 **Voice Features Added** 🎤
+
+- ✅ **Complete voice input/output system**
+- ✅ **Chrome WebDriver for stable browser automation**
+- ✅ **Thread-safe text-to-speech with error handling**
+- ✅ **Hybrid voice + text interaction**
+- ✅ **Voice-guided shopping workflow**
+- ✅ **Multi-website voice support**
 
 The system is now more robust, user-friendly, and extensible for future enhancements!
+
+**Ready to start voice shopping: `python main_voice.py`** 🎤🛍️
 
 ---
 

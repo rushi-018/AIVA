@@ -58,3 +58,50 @@ logs/
 # Temporary files
 *.tmp
 *.temp
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# AIVA specific
+aiva_settings.json
+*.log
+debug_*
+test_*
+*_backup.*
+*_temp.*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+*.tmp
+
+# Documentation (except main README)
+*_GUIDE.md
+*_SUMMARY.md
+TECHNICAL_*.md
+USER_*.md
+
+# Media
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+
+# Browser drivers
+chromedriver*
+geckodriver*

@@ -1,7 +1,22 @@
 streamlit
-selenium
+selenium==4.25.0
 google-generativeai
 python-dotenv
-speechrecognition
-pyaudio
-webdriver-manager
+webdriver-manager==4.0.2
+scikit-learn==1.5.2
+numpy
+sentence-transformers==3.2.1
+requests==2.32.3
+
+# Voice Input/Output Dependencies
+pyttsx3==2.99
+SpeechRecognition==3.14.3
+pyaudio==0.2.14
+
+# Additional ML dependencies
+transformers
+torch
+
+# Voice system notes:
+# For Windows, pyaudio might require Visual C++ redistributables
+# Alternative audio backends if pyaudio fails: sounddevice, pygame, playsound
