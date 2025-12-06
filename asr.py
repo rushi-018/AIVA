@@ -8,9 +8,18 @@ import logging
 from typing import Optional
 
 def get_text_input(prompt: str = "Type your command: ") -> str:
+    """Get text input from user via keyboard."""
     return input(prompt)
 
 def get_voice_input(timeout: int = 5) -> Optional[str]:
+    """Get voice input from user via microphone.
+    
+    Args:
+        timeout: Maximum seconds to wait for speech
+    
+    Returns:
+        Recognized text or None if recognition fails
+    """
     try:
         import speech_recognition as sr
     except ImportError:
@@ -32,12 +41,17 @@ def get_voice_input(timeout: int = 5) -> Optional[str]:
         return None
 
 def get_command() -> str:
-    """Try voice input, else fallback to text input."""
+    """Try voice input, else fallback to text input.
+    
+    Returns:
+        User command as string from either voice or text input
+    """
     text = get_voice_input()
     if text:
-        print(f"You said: {text}")
+        print(f"✅ You said: {text}")
         return text
     else:
+        print("⌨️ Using text input...")
         return get_text_input()
 
 if __name__ == "__main__":

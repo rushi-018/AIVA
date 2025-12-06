@@ -11,7 +11,17 @@ from datetime import datetime
 
 @dataclass
 class GroceryItem:
-    """Represents a grocery item with details."""
+    """Represents a grocery item with details.
+    
+    Attributes:
+        name: Item name
+        category: Item category (Staples, Vegetables, etc.)
+        default_quantity: Default purchase quantity
+        unit: Measurement unit (piece, kg, liter, pack, etc.)
+        estimated_price: Approximate price for budgeting
+        brand_preference: Preferred brand if any
+        notes: Additional notes or special instructions
+    """
     name: str
     category: str
     default_quantity: int = 1
@@ -22,7 +32,15 @@ class GroceryItem:
 
 @dataclass
 class GroceryList:
-    """Represents a grocery list."""
+    """Represents a grocery list.
+    
+    Attributes:
+        name: List name identifier
+        items: List of items with quantities and notes
+        list_type: Type of list (default, monthly, weekly, custom)
+        created_date: Creation timestamp
+        last_used: Last usage timestamp for tracking
+    """
     name: str
     items: List[Dict]  # List of {item_name, quantity, notes}
     list_type: str = "custom"  # default, monthly, weekly, custom
@@ -30,13 +48,22 @@ class GroceryList:
     last_used: str = ""
 
 class GroceryListManager:
-    """Manages grocery lists and items."""
+    """Manages grocery lists and items.
+    
+    Provides functionality to create, manage, and organize grocery lists
+    with support for custom lists, item categories, and user preferences.
+    """
     
     def __init__(self, data_file: str = "grocery_data.json"):
+        """Initialize the grocery list manager.
+        
+        Args:
+            data_file: Path to JSON file for persistent storage
+        """
         self.data_file = data_file
         self.items_db = {}  # Database of all known items
         self.lists = {}     # All grocery lists
-        self.user_preferences = {}
+        self.user_preferences = {}  # User-specific preferences
         self.load_data()
         self._initialize_default_items()
         self._initialize_default_lists()

@@ -10,13 +10,17 @@ from typing import List, Dict, Any
 def format_search_results(candidates: List[Dict]) -> str:
     """Format search results into a user-friendly summary."""
     if not candidates:
-        return "❌ No products found matching your criteria."
+        return "❌ No products found matching your criteria.\n💡 Try adjusting your search terms or price range."
     
     response = f"✅ Found {len(candidates)} products:\n\n"
     for i, item in enumerate(candidates, 1):
         title = item.get('title', 'Unknown Product')
         price = item.get('price', 'Price not available')
-        response += f"{i}. {title}\n   Price: ₹{price}\n\n"
+        rating = item.get('rating', 'N/A')
+        response += f"{i}. {title}\n   💰 Price: ₹{price}"
+        if rating != 'N/A':
+            response += f" | ⭐ Rating: {rating}"
+        response += "\n\n"
     
     return response
 
@@ -32,15 +36,16 @@ def format_action_result(action: str, result: str) -> str:
 
 def generate_response(execution_result: str, candidates: List[Dict] = None) -> str:
     """Generate a comprehensive response from execution results."""
-    response = "🤖 AIVA Response:\n"
+    response = "\n🤖 AIVA Response:\n"
     response += "=" * 40 + "\n\n"
     
     if candidates:
         response += format_search_results(candidates)
+        response += "\n💬 What would you like to do next?"
     else:
         response += execution_result
     
-    response += "\n" + "=" * 40
+    response += "\n" + "=" * 40 + "\n"
     return response
 
 def speak_response(text: str) -> str:

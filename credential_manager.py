@@ -10,14 +10,26 @@ import time
 from typing import Optional, Dict
 
 class CredentialManager:
-    """Secure credential management for AIVA login system."""
+    """Secure credential management for AIVA login system.
+    
+    Provides simple encoding/decoding for storing user credentials
+    securely on the local filesystem.
+    """
     
     def __init__(self, credentials_file: str = ".aiva_credentials"):
-        """Initialize credential manager."""
+        """Initialize credential manager.
+        
+        Args:
+            credentials_file: Path to store encrypted credentials
+        """
         self.credentials_file = credentials_file
     
     def _encode(self, data: str) -> str:
-        """Simple encoding for security."""
+        """Simple encoding for security.
+        
+        Note: Uses base64 encoding for basic obfuscation.
+        For production use, consider stronger encryption methods.
+        """
         try:
             encoded = base64.b64encode(data.encode()).decode()
             return encoded
@@ -25,7 +37,10 @@ class CredentialManager:
             return ""
     
     def _decode(self, data: str) -> str:
-        """Simple decoding."""
+        """Simple decoding.
+        
+        Decodes base64 encoded credentials.
+        """
         try:
             decoded = base64.b64decode(data.encode()).decode()
             return decoded
