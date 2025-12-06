@@ -35,7 +35,8 @@ def parse_command(command: str) -> Dict[str, Any]:
         platform = plat_match.group(1).lower()
 
     # Product/entity extraction (remove stopwords and platform)
-    cleaned = re.sub(r"\b(?:find|search|show|for|under|below|less than|upto|up to|on|in|buy|order|please|want|need|get|rs|rupees|₹|[\d,]+[kK]?|flipkart|amazon|myntra|zomato|swiggy)\b", "", command, flags=re.I)
+    # Enhanced stopwords list for better entity extraction
+    cleaned = re.sub(r"\b(?:find|search|show|for|under|below|less than|upto|up to|on|in|buy|order|purchase|please|want|need|get|looking for|show me|find me|best|good|top|rs|rupees|₹|[\d,]+[kK]?|flipkart|amazon|myntra|zomato|swiggy)\b", "", command, flags=re.I)
     cleaned = re.sub(r"\s+", " ", cleaned).strip()
     product_name = cleaned if cleaned else None
 

@@ -13,9 +13,18 @@ from selenium.webdriver.support import expected_conditions as EC
 import time
 
 def execute_flipkart_search(product: str, price_limit: Optional[int] = None) -> List[Dict]:
-    """Execute search on Flipkart and return candidates."""
+    """Execute search on Flipkart and return candidates.
+    
+    Args:
+        product: Product search query
+        price_limit: Maximum price threshold
+    
+    Returns:
+        List of matching product candidates
+    """
     logging.info(f"Executing Flipkart search for: {product}, price limit: {price_limit}")
     candidates = get_flipkart_candidates(product, price_limit, max_items=5)
+    logging.info(f"Found {len(candidates)} candidates")
     return candidates
 
 def execute_add_to_cart(product: str, price_limit: Optional[int] = None) -> str:
@@ -69,8 +78,10 @@ def execute_add_to_cart(product: str, price_limit: Optional[int] = None) -> str:
             add_to_cart_btn = wait.until(EC.element_to_be_clickable((By.XPATH, '//button[contains(@class, "_2KpZ6l") and contains(text(), "ADD TO CART")]')))
             add_to_cart_btn.click()
             time.sleep(2)
-            return "✅ Item successfully added to cart!"
-        except Exception:
+            logging.info("Item added to cart successfully")
+            return "✅ Item successfully added to cart! 🛍️"
+        except Exception as e:
+            logging.warning(f"Add to cart failed: {e}")
             return "❌ Could not find 'Add to Cart' button."
     
     except Exception as e:

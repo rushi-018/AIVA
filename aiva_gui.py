@@ -59,7 +59,7 @@ class AIVAGui:
     
     def __init__(self, root):
         self.root = root
-        self.root.title("AIVA - AI Voice Assistant")
+        self.root.title("🤖 AIVA - AI Voice Assistant | Smart Shopping Companion")
         self.root.geometry("1200x800")
         self.root.configure(bg='#f0f0f0')
         
@@ -137,10 +137,15 @@ class AIVAGui:
         main_frame.columnconfigure(1, weight=1)
         main_frame.rowconfigure(2, weight=1)
         
-        # Title
+        # Title with enhanced styling
         title_label = tk.Label(main_frame, text="🤖 AIVA - AI Voice Assistant", 
                               font=("Arial", 20, "bold"), bg='#f0f0f0', fg='#2c3e50')
-        title_label.grid(row=0, column=0, columnspan=3, pady=(0, 20))
+        title_label.grid(row=0, column=0, columnspan=3, pady=(0, 5))
+        
+        # Subtitle
+        subtitle_label = tk.Label(main_frame, text="Your Intelligent Shopping Companion", 
+                                 font=("Arial", 10, "italic"), bg='#f0f0f0', fg='#7f8c8d')
+        subtitle_label.grid(row=0, column=0, columnspan=3, pady=(25, 20), sticky=tk.S)
         
         # Service Selection Frame
         service_frame = ttk.LabelFrame(main_frame, text="Select Service", padding="10")
@@ -172,9 +177,9 @@ class AIVAGui:
         ecom_frame = ttk.LabelFrame(parent, text="🛒 E-commerce", padding="5")
         ecom_frame.grid(row=0, column=0, padx=(0, 10), sticky=(tk.W, tk.E, tk.N))
         
-        ttk.Button(ecom_frame, text="🏪 Flipkart", 
+        ttk.Button(ecom_frame, text="🏪 Flipkart Shopping", 
                   command=lambda: self.select_service('flipkart')).grid(row=0, column=0, padx=5, pady=2)
-        ttk.Button(ecom_frame, text="📦 Amazon", 
+        ttk.Button(ecom_frame, text="📦 Amazon Shopping", 
                   command=lambda: self.select_service('amazon')).grid(row=0, column=1, padx=5, pady=2)
         
         # Grocery section
@@ -190,12 +195,12 @@ class AIVAGui:
         voice_frame = ttk.LabelFrame(parent, text="🎤 Voice Commands", padding="5")
         voice_frame.grid(row=0, column=2, padx=(10, 0), sticky=(tk.W, tk.E, tk.N))
         
-        voice_status = "🎤 Voice Mode" if self.voice_enabled else "❌ Voice Disabled"
+        voice_status = "🎤 Enable Voice" if self.voice_enabled else "❌ Voice Unavailable"
         self.voice_btn = ttk.Button(voice_frame, text=voice_status, 
                                    command=self.toggle_voice_mode)
         self.voice_btn.grid(row=0, column=0, padx=5, pady=2)
         
-        ttk.Button(voice_frame, text="🎓 Tutorial", 
+        ttk.Button(voice_frame, text="🎓 Voice Tutorial", 
                   command=self.start_voice_tutorial).grid(row=0, column=1, padx=5, pady=2)
         
         ttk.Button(voice_frame, text="❓ Help", 

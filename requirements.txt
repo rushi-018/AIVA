@@ -1,3 +1,10 @@
+# ============================================
+# AIVA - AI Voice Assistant Dependencies
+# ============================================
+# This file contains all required Python packages for AIVA
+# Install all at once: pip install -r requirements.txt
+
+# Core Dependencies - Web Automation & AI
 streamlit
 selenium==4.25.0
 google-generativeai

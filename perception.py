@@ -56,7 +56,17 @@ def create_edge_driver() -> webdriver.Edge:
                 raise Exception(f"Could not create webdriver. Edge error: {e1}, WebDriver Manager error: {e2}, Chrome error: {e3}")
 
 def get_flipkart_candidates(product: str, price_limit: Optional[int] = None, max_items: int = 5) -> List[Dict]:
-    """Searches Flipkart for a product and extracts item titles and prices."""
+    """Searches Flipkart for a product and extracts item titles and prices.
+    
+    Args:
+        product: Product name or search query
+        price_limit: Maximum price filter (optional)
+        max_items: Maximum number of results to return
+    
+    Returns:
+        List of product dictionaries with title, price, and rating
+    """
+    logging.info(f"Searching for '{product}' with price limit: {price_limit}")
     try:
         driver = create_edge_driver()
     except Exception as e:
@@ -74,10 +84,12 @@ def get_flipkart_candidates(product: str, price_limit: Optional[int] = None, max
             pass
         
         # Search for product
+        logging.info(f"Entering search query: {product}")
         search_box = wait.until(EC.presence_of_element_located((By.NAME, "q")))
         search_box.clear()
         search_box.send_keys(product)
         search_box.send_keys(Keys.ENTER)
+        logging.info("Search query submitted successfully")
         
         # Wait for results with multiple possible selectors
         time.sleep(3)  # Give page time to load

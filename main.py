@@ -6,9 +6,10 @@ import sys
 
 def main():
     """Main entry point for AIVA."""
+    print("\n" + "="*50)
     print("🚀 AIVA - Agentic Intelligent Voice Assistant")
     print("🤖 AI-Powered Shopping Assistant")
-    print("=" * 50)
+    print("="*50)
     
     # Initialize AIVA
     aiva = InteractiveAIVA()
@@ -20,10 +21,11 @@ def main():
     try:
         print("\n🎤 Welcome to AIVA!")
         print("I can help you find and purchase products with AI-powered recommendations.")
-        print("\nExamples:")
-        print("- 'Find wireless earphones under 2000'")
-        print("- 'Show me good gaming headsets'")
-        print("- 'bluetooth speakers under 5000'")
+        print("\n💡 Example Queries:")
+        print("  • 'Find wireless earphones under 2000'")
+        print("  • 'Show me good gaming headsets'")
+        print("  • 'Bluetooth speakers under 5000'")
+        print("  • 'Best smartwatch under 10000'")
         
         while True:
             print("\n" + "="*50)

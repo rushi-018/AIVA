@@ -9,16 +9,18 @@ from typing import Dict, Any
 
 def react_loop(nlu_result: Dict[str, Any]) -> Dict[str, Any]:
     """Minimal ReAct loop: reason, act, observe (1 cycle for demo)."""
-    # Reason
+    # Reason - Extract and analyze user intent and context
     intent = nlu_result.get("intent")
     product = nlu_result.get("product_name")
     price = nlu_result.get("price_range")
     platform = nlu_result.get("platform")
-    reasoning = f"Intent: {intent}. Product: {product}. Price: {price}. Platform: {platform}."
+    
+    # Build contextual reasoning with better formatting
+    reasoning = f"Intent: {intent}. Product: {product}. Price Limit: {price if price else 'None'}. Platform: {platform if platform else 'Auto-detect'}."
     logging.info(f"Reasoning: {reasoning}")
-    print(f"[REASON] {reasoning}")
+    print(f"[REASON] 🧠 {reasoning}")
 
-    # Act (plan)
+    # Act (plan) - Generate action plan based on reasoning
     if intent == "search_product" and platform:
         plan = {
             "action": "search",
@@ -26,13 +28,14 @@ def react_loop(nlu_result: Dict[str, Any]) -> Dict[str, Any]:
             "product": product,
             "price": price
         }
-        print(f"[ACT] Plan: {plan}")
+        print(f"[ACT] 🎯 Plan: {plan}")
     else:
         plan = {"action": "unknown"}
-        print("[ACT] No valid plan.")
+        print("[ACT] ⚠️ No valid plan generated.")
 
-    # Observe (for demo, just echo plan)
-    print(f"[OBSERVE] Plan ready for execution.")
+    # Observe (for demo, just echo plan) - Validate and return execution plan
+    print(f"[OBSERVE] ✅ Plan ready for execution.")
+    logging.info(f"Plan observation complete: {plan}")
     return plan
 
 if __name__ == "__main__":
